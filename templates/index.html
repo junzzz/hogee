@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>hell world</title>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <td>id</td>
+                <td>name</td>
+                <td>address</td>
+                <td>rank</td>
+            </tr>
+            {{ range .Persons}}
+            <tr>
+                <td>{{.ID}}</td>
+                <td>{{.Name}}</td>
+                <td>{{.Address}}</td>
+                <td>{{.Rank}}</td>
+            </tr>
+            {{ end }}
+        </table>
+    </body>
+</html>

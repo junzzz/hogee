@@ -1,11 +1,13 @@
 package main
 
 import (
-	"fmt"
+	"log"
+	"net/http"
 
-	"github.com/junzzz/hogee/fuga"
+	"github.com/junzzz/hogee/controllers"
 )
 
 func main() {
-	fmt.Println(fuga.Echo())
+	http.HandleFunc("/", controllers.HellWorld)
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
