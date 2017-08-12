@@ -2,9 +2,18 @@ version: '2'
 services:
   app:
     build: .
+    depends_on:
+      - db
     environment:
       - VIRTUAL_HOST=app.local
       - VIRTUAL_PORT=8080
+      - POSTGRES_USERNAME=unko_user
+      - POSTGRES_HOSTNAME=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB_NAME=unko
+      - POSTGRES_SSLMODE=disable
+    links:
+      - db  
   proxy:
     environment:
       - DEFAULT_HOST=app.local
@@ -15,3 +24,7 @@ services:
       - "80:80"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile-db    
