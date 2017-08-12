@@ -35,8 +35,7 @@ func HellWorld(w http.ResponseWriter, r *http.Request) {
 		persons = append(persons, p)
 	}
 
-	//t := template.New("sample templete")
-	t, err := template.ParseFiles("/Users/junzzz/src/github.com/junzzz/hogee/templates/index.html")
+	t, err := template.ParseFiles("templates/index.html")
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -46,7 +45,6 @@ func HellWorld(w http.ResponseWriter, r *http.Request) {
 		Persons: persons,
 	}
 	err = t.Execute(w, data)
-	// //log.Println(err)
 	//fmt.Fprint(w, "hell world")
 }
 
