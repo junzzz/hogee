@@ -1,0 +1,17 @@
+version: '2'
+services:
+  app:
+    build: .
+    environment:
+      - VIRTUAL_HOST=app.local
+      - VIRTUAL_PORT=8080
+  proxy:
+    environment:
+      - DEFAULT_HOST=app.local
+    image: jwilder/nginx-proxy:0.6.0
+    links:
+      - app
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
